@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantik Animasyon</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #282c34;
+            position: relative;
+        }
+        canvas {
+            border: 2px solid #fff;
+        }
+        .heart {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1.5em;
+            color: red;
+            cursor: pointer;
+            z-index: 1; /* Düğmeyi diğer öğelerin üstüne getir */
+        }
+        .heart:hover {
+            text-shadow: 0 0 5px #fff; /* Hover efekti */
+        }
+    </style>
+</head>
+<body>
+    <canvas id="romanticCanvas"></canvas>
+    <!-- Kalp simgesi içinde müzik başlatma metni -->
+    <div class="heart" id="playButtonWrapper" onclick="startMusic()">♥ Müziği Başlat</div>
+    <!-- Müzik dosyasını çağıran audio etiketi -->
+    <audio id="backgroundMusic" src="music/background_music.mp3" preload="auto" loop></audio>
+    <script src="animation.js"></script>
+    <script>
+        // JavaScript ile müziği düğme tıklamasıyla başlatma ve animasyonu başlatma
+        function startMusic() {
+            const backgroundMusic = document.getElementById('backgroundMusic');
+
+            if (backgroundMusic) {
+                backgroundMusic.play()
+                    .then(() => {
+                        console.log('Müzik başlatıldı.');
+                        startAnimation(); // Animasyonu başlat
+                    })
+                    .catch(error => {
+                        console.error('Müzik başlatılırken hata oluştu:', error);
+                    });
+                
+                // Müzik başladıktan sonra kalp simgesini gizle
+                const playButtonWrapper = document.getElementById('playButtonWrapper');
+                if (playButtonWrapper) {
+                    playButtonWrapper.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
