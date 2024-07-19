@@ -36,16 +36,12 @@
 </head>
 <body>
     <canvas id="romanticCanvas"></canvas>
-    <!-- Kalp simgesi içinde müzik başlatma metni -->
     <div class="heart" id="playButtonWrapper" onclick="startMusic()">♥ Müziği Başlat</div>
-    <!-- Müzik dosyasını çağıran audio etiketi -->
     <audio id="backgroundMusic" src="background_music.mp3" preload="auto" loop></audio>
     <script src="animation.js"></script>
     <script>
-        // JavaScript ile müziği düğme tıklamasıyla başlatma ve animasyonu başlatma
         function startMusic() {
             const backgroundMusic = document.getElementById('backgroundMusic');
-
             if (backgroundMusic) {
                 backgroundMusic.play()
                     .then(() => {
@@ -56,7 +52,6 @@
                         console.error('Müzik başlatılırken hata oluştu:', error);
                     });
                 
-                // Müzik başladıktan sonra kalp simgesini gizle
                 const playButtonWrapper = document.getElementById('playButtonWrapper');
                 if (playButtonWrapper) {
                     playButtonWrapper.style.display = 'none';
