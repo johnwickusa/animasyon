@@ -7,30 +7,8 @@ canvas.height = window.innerHeight;
 
 // Arka plan gradienti çiziliyor
 const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-gradient.addColorStop(0, '#001f3f'); // Koyu mavi renk
-gradient.addColorStop(1, '#0052d4'); // Daha açık mavi renk
-
-// Yıldızlar dizisi
-const stars = [];
-const numStars = 200; // Yıldız sayısı
-
-// Yıldız çizme fonksiyonu
-function drawStar(x, y, size) {
-    ctx.beginPath();
-    ctx.arc(x, y, size, 0, Math.PI * 2);
-    ctx.fillStyle = 'white';
-    ctx.fill();
-}
-
-// Arka plan yıldızları oluşturma fonksiyonu
-function createStars() {
-    for (let i = 0; i < numStars; i++) {
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const size = Math.random() * 1.5 + 0.5; // Yıldız boyutu
-        stars.push({ x, y, size });
-    }
-}
+gradient.addColorStop(0, '#ff4e50');
+gradient.addColorStop(1, '#f9d423');
 
 // Kalp çizme fonksiyonu
 function drawHeart(x, y, size) {
@@ -76,14 +54,12 @@ function createHeart() {
 }
 
 // Ekranın ortasında gösterilecek metin
-const finalMessage = "Sana bütün kalbimle inanıyorum sen o sınavı verip Uzman Doktor olacaksın";
+const finalMessage = "Sana butun kalbimle inaniyorum sen o sinavi verip Uzman Doktor olacaksin";
 const showFinalMessageTime = 30000; // 30 saniye
 
 // Zamanlayıcı ve mesaj durumu
 let messageShown = false;
 let animationRunning = false;
-let startTime = 0;
-let heartInterval;
 
 // Animasyon fonksiyonu
 function animate() {
@@ -92,11 +68,6 @@ function animate() {
     // Arka plan gradienti tekrar çiziliyor
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Yıldızların çizimi
-    for (let star of stars) {
-        drawStar(star.x, star.y, star.size);
-    }
 
     // Kalplerin hareketi ve çizimi
     for (let i = 0; i < hearts.length; i++) {
@@ -123,12 +94,12 @@ function animate() {
 }
 
 // Kalp oluşturma işlemi periyodik olarak devam ediyor
+let heartInterval;
+
+// Animasyonu başlat
 function startAnimation() {
-    if (!animationRunning) {
-        animationRunning = true; // Animasyonu başlat
-        startTime = Date.now(); // Başlangıç zamanını ayarla
-        heartInterval = setInterval(createHeart, 300); // Kalp oluşturma işlemi başlatılıyor
-        createStars(); // Yıldızları oluştur
-        animate();
-    }
+    animationRunning = true; // Animasyonu başlat
+    startTime = Date.now(); // Başlangıç zamanını ayarla
+    heartInterval = setInterval(createHeart, 300); // Kalp oluşturma işlemi başlatılıyor
+    animate();
 }
