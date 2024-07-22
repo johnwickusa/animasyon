@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UZM DR. Hilal</title>
+    <title> UZM DR. HILAL</title>
     <style>
         body, html {
             margin: 0;
@@ -22,22 +22,36 @@
         }
         .heart {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 1.5em;
+            font-size: 2em;
             color: red;
             cursor: pointer;
             z-index: 1; /* Düğmeyi diğer öğelerin üstüne getir */
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         .heart:hover {
             text-shadow: 0 0 5px #fff; /* Hover efekti */
+        }
+        .text-center {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2.5em;
+            text-align: center;
+            z-index: 0;
         }
     </style>
 </head>
 <body>
     <canvas id="romanticCanvas"></canvas>
-    <!-- Kalp simgesi içinde müzik başlatma metni -->
-    <div class="heart" id="playButtonWrapper" onclick="startMusic()">♥ Müziği Başlat</div>
+    <!-- Sayfanın ortasında Liselim metni -->
+    <div class="text-center">Liselim</div>
+    <!-- Sayfanın ortasında Müziği Başlat düğmesi -->
+    <div class="heart" id="playButtonWrapper" onclick="startMusic()">Müziği Başlat</div>
     <!-- Müzik dosyasını çağıran audio etiketi -->
     <audio id="backgroundMusic" src="background_music.mp3" preload="auto" loop></audio>
     <script src="animation.js"></script>
@@ -57,6 +71,11 @@
                 const playButtonWrapper = document.getElementById('playButtonWrapper');
                 if (playButtonWrapper) {
                     playButtonWrapper.style.display = 'none';
+                }
+
+                const textCenter = document.querySelector('.text-center');
+                if (textCenter) {
+                    textCenter.style.display = 'none';
                 }
             }
         }
